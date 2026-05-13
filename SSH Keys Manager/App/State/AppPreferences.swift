@@ -7,12 +7,14 @@ protocol AppPreferencesManaging {
     var configBackupLimit: Int { get }
     var isReadOnlyModeEnabled: Bool { get }
     var isMinimizeToMenuBarEnabled: Bool { get }
+    var confirmPrivateKeyCopy: Bool { get }
     func setSSHDirectoryPath(_ path: String)
     func setSSHKeygenPath(_ path: String)
     func setHostPropertyIndentation(_ indentation: SSHConfigHostPropertyIndentation)
     func setConfigBackupLimit(_ limit: Int)
     func setReadOnlyModeEnabled(_ isEnabled: Bool)
     func setMinimizeToMenuBarEnabled(_ isEnabled: Bool)
+    func setConfirmPrivateKeyCopy(_ isEnabled: Bool)
 }
 
 struct AppPreferences: AppPreferencesManaging {
@@ -23,6 +25,7 @@ struct AppPreferences: AppPreferencesManaging {
         static let configBackupLimit = "configBackupLimit"
         static let isReadOnlyModeEnabled = "isReadOnlyModeEnabled"
         static let isMinimizeToMenuBarEnabled = "isMinimizeToMenuBarEnabled"
+        static let confirmPrivateKeyCopy = "confirmPrivateKeyCopy"
     }
 
     private let userDefaults: UserDefaults
@@ -60,6 +63,10 @@ struct AppPreferences: AppPreferencesManaging {
         userDefaults.bool(forKey: Keys.isMinimizeToMenuBarEnabled)
     }
 
+    var confirmPrivateKeyCopy: Bool {
+        userDefaults.object(forKey: Keys.confirmPrivateKeyCopy) as? Bool ?? true
+    }
+
     func setSSHDirectoryPath(_ path: String) {
         userDefaults.set(
             SSHWorkspacePath.normalizeDirectoryPath(path),
@@ -91,5 +98,9 @@ struct AppPreferences: AppPreferencesManaging {
 
     func setMinimizeToMenuBarEnabled(_ isEnabled: Bool) {
         userDefaults.set(isEnabled, forKey: Keys.isMinimizeToMenuBarEnabled)
+    }
+
+    func setConfirmPrivateKeyCopy(_ isEnabled: Bool) {
+        userDefaults.set(isEnabled, forKey: Keys.confirmPrivateKeyCopy)
     }
 }

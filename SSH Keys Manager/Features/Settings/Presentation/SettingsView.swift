@@ -13,6 +13,7 @@ struct SettingsView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 ReadOnlyModeCard(model: model)
+                PrivateKeyCopyConfirmationCard(model: model)
                 MinimizeToMenuBarCard(model: model)
                 SSHConfigFormattingCard(model: model)
                 SSHConfigBackupsCard(model: model)
@@ -97,6 +98,49 @@ private struct SettingsFooterAttribution: View {
             withAnimation(.easeInOut(duration: 0.22)) {
                 heartScale = 1
             }
+        }
+    }
+}
+
+private struct PrivateKeyCopyConfirmationCard: View {
+    @Bindable var model: AppModel
+
+    var body: some View {
+        InfoCard(padding: SettingsViewMetrics.sectionContentPadding) {
+            HStack(alignment: .top, spacing: 14) {
+                PrivateKeyCopyConfirmationIcon()
+                PrivateKeyCopyConfirmationContent(model: model)
+            }
+        }
+    }
+}
+
+private struct PrivateKeyCopyConfirmationIcon: View {
+    var body: some View {
+        Image(systemName: "key.horizontal")
+            .font(.title2)
+            .foregroundStyle(.tint)
+            .frame(width: 32)
+    }
+}
+
+private struct PrivateKeyCopyConfirmationContent: View {
+    @Bindable var model: AppModel
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 16) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Confirm before copying private keys")
+                    .font(.headline)
+                Text("Show a confirmation dialog before placing a private key in the clipboard.")
+                    .foregroundStyle(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            Toggle("", isOn: $model.confirmPrivateKeyCopy)
+                .toggleStyle(.switch)
+                .labelsHidden()
+                .help("Show a confirmation dialog before placing a private key in the clipboard.")
         }
     }
 }

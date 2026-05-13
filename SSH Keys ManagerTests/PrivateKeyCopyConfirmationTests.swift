@@ -25,7 +25,7 @@ final class PrivateKeyCopyConfirmationTests: XCTestCase {
         await model.copyPrivateKey(for: makeKeyItem())
 
         XCTAssertEqual(pasteboard.string(forType: .string), TestSSHKeyStorage.privateKeyContents)
-        XCTAssertEqual(model.notification?.message, "Private key was copied to the clipboard")
+        XCTAssertEqual(model.notification?.message, "Private key copied - clearing in 60s")
         XCTAssertEqual(confirmer.requestedKeyNames, ["id_ed25519"])
     }
 

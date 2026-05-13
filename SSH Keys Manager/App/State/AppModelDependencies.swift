@@ -101,6 +101,10 @@ private struct AppPreferencesWithPrivateKeyCopyConfirmer: AppPreferencesManaging
         preferences.isMinimizeToMenuBarEnabled
     }
 
+    var clipboardClearSeconds: Int {
+        preferences.clipboardClearSeconds
+    }
+
     var confirmPrivateKeyCopy: Bool {
         preferences.confirmPrivateKeyCopy
     }
@@ -127,6 +131,10 @@ private struct AppPreferencesWithPrivateKeyCopyConfirmer: AppPreferencesManaging
 
     func setMinimizeToMenuBarEnabled(_ isEnabled: Bool) {
         preferences.setMinimizeToMenuBarEnabled(isEnabled)
+    }
+
+    func setClipboardClearSeconds(_ seconds: Int) {
+        preferences.setClipboardClearSeconds(seconds)
     }
 
     func setConfirmPrivateKeyCopy(_ isEnabled: Bool) {

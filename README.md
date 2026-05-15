@@ -17,17 +17,15 @@ Native macOS app for browsing, copying, generating, and organizing SSH keys and 
 > [!NOTE]
 > **Hardening fork notice**
 >
-> This branch is a personal hardening fork of [Stmol/ssh-keys-manager-macos-app](https://github.com/Stmol/ssh-keys-manager-macos-app) at v1.0.1.
-> It keeps the app local-only and adds three small security/UX hardening changes:
+> This branch is a historical personal hardening fork of [Stmol/ssh-keys-manager-macos-app](https://github.com/Stmol/ssh-keys-manager-macos-app) at v1.0.1.
+> The three hardening changes from this branch have now been merged upstream and are included in [v1.4](https://github.com/Stmol/ssh-keys-manager-macos-app/releases/tag/v1.4):
 >
 > - Private-key clipboard auto-clear after a configurable delay (default 60 seconds).
 > - Confirmation dialog before copying a private key to the system clipboard.
 > - Stronger validation for the configurable `ssh-keygen` binary path.
 >
-> The clipboard auto-clear change has been submitted upstream as [PR #3](https://github.com/Stmol/ssh-keys-manager-macos-app/pull/3).
-> The confirmation dialog and `ssh-keygen` validation changes are staged as separate follow-up branches in this fork:
-> [`feat/private-key-copy-confirmation`](https://github.com/davezfr/ssh-keys-manager/tree/feat/private-key-copy-confirmation) and
-> [`refactor/ssh-keygen-validation`](https://github.com/davezfr/ssh-keys-manager/tree/refactor/ssh-keygen-validation).
+> Upstream PRs: [#3](https://github.com/Stmol/ssh-keys-manager-macos-app/pull/3), [#4](https://github.com/Stmol/ssh-keys-manager-macos-app/pull/4), and [#5](https://github.com/Stmol/ssh-keys-manager-macos-app/pull/5).
+> New users should prefer the upstream project; this branch remains only as a record of the temporary fork work.
 > All credit for the underlying app goes to the original author.
 
 ![SSH Keys Manager screenshot](assets/screenshots/keys_tab.png)
